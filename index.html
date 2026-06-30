@@ -40,42 +40,87 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
     .app { display:flex; flex-direction:column; height:100vh; height:100dvh; max-width:480px; margin:0 auto; position:relative; }
 
     /* Topbar */
-    .topbar { display:flex; align-items:center; gap:9px; padding:14px 18px calc(8px + env(safe-area-inset-top)); }
+    .topbar { display:flex; align-items:center; gap:9px; padding:14px 18px calc(8px + env(safe-area-inset-top)); position:relative; z-index:5; }
     .logo { width:30px; height:30px; background:var(--orange); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; }
     .bname { font-size:15px; font-weight:800; letter-spacing:.3px; }
     .bname .rd { color:var(--orange); }
-    .skip { margin-left:auto; font-size:12px; font-weight:700; color:#cbd5e1; text-decoration:none; border:1px solid #334155; border-radius:99px; padding:5px 11px; }
+    .skip { margin-left:auto; font-size:12px; font-weight:700; color:#cbd5e1; text-decoration:none; border:1px solid #334155; border-radius:99px; padding:5px 11px; background:rgba(15,23,42,.4); }
 
     /* Carousel */
     .carousel { flex:1; overflow:hidden; position:relative; }
     .track { display:flex; height:100%; transition:transform .35s cubic-bezier(.4,0,.2,1); }
-    .card { flex:0 0 100%; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:8px 24px; overflow-y:auto; }
-    .card-inner { width:100%; max-width:100%; text-align:center; }
+    .card { flex:0 0 100%; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:6px 22px 14px; overflow-y:auto; position:relative; }
+    .card-inner { width:100%; max-width:420px; text-align:center; position:relative; z-index:1; }
 
-    .kicker { font-size:11px; font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
-    h1 { font-size:27px; font-weight:800; line-height:1.2; }
+    /* Fondos decorativos por card */
+    .bg { position:absolute; inset:0; z-index:0; pointer-events:none; }
+    /* Card 1: mapa de ciudad */
+    .bg-map {
+        opacity:.55;
+        background:
+            repeating-linear-gradient(0deg,  transparent 0 40px, rgba(148,163,184,.10) 40px 41px),
+            repeating-linear-gradient(90deg, transparent 0 40px, rgba(148,163,184,.10) 40px 41px),
+            repeating-linear-gradient(34deg, transparent 0 78px, rgba(148,163,184,.07) 78px 79px),
+            repeating-linear-gradient(-28deg,transparent 0 96px, rgba(148,163,184,.06) 96px 97px);
+        -webkit-mask-image:radial-gradient(120% 80% at 50% 22%, #000 35%, transparent 80%);
+                mask-image:radial-gradient(120% 80% at 50% 22%, #000 35%, transparent 80%);
+    }
+    .bg-map .route { position:absolute; left:18%; top:14%; width:60%; height:34%; border:2px dashed rgba(249,115,22,.45); border-radius:40px 8px 40px 8px; opacity:.7; }
+    .bg-map .city { position:absolute; top:11%; left:0; right:0; text-align:center; font-size:13px; font-weight:700; letter-spacing:2px; color:rgba(203,213,225,.45); text-transform:uppercase; }
+    /* Cards 2 y 3: red de puntos */
+    .bg-net {
+        opacity:.9;
+        background:
+            radial-gradient(circle, rgba(148,163,184,.16) 1.4px, transparent 1.6px) 0 0 / 26px 26px;
+        -webkit-mask-image:radial-gradient(130% 90% at 50% 40%, #000 30%, transparent 85%);
+                mask-image:radial-gradient(130% 90% at 50% 40%, #000 30%, transparent 85%);
+    }
+    .bg-net::after { content:""; position:absolute; inset:0;
+        background:radial-gradient(40% 30% at 75% 18%, rgba(249,115,22,.16), transparent 70%),
+                   radial-gradient(45% 35% at 20% 80%, rgba(22,163,74,.14), transparent 70%); }
+
+    .kicker { font-size:11px; font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:1.6px; margin-bottom:11px; }
+    h1 { font-size:27px; font-weight:800; line-height:1.18; }
     h1 .o { color:var(--orange); }
-    h2 { font-size:24px; font-weight:800; line-height:1.2; }
-    .lead { font-size:15px; color:#cbd5e1; margin-top:14px; line-height:1.6; }
+    h2 { font-size:25px; font-weight:800; line-height:1.18; }
+    .lead { font-size:14.5px; color:#cbd5e1; margin-top:13px; line-height:1.55; }
 
-    .mini { list-style:none; margin:22px auto 0; max-width:300px; display:flex; flex-direction:column; gap:10px; }
-    .mini li { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:12px 16px; font-size:14px; font-weight:600; text-align:left; }
+    /* Card 1: grid de beneficios */
+    .feat-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:20px; }
+    .feat { border-radius:16px; padding:16px 13px 15px; color:#0f172a; box-shadow:0 10px 26px rgba(0,0,0,.30); }
+    .feat .ic { font-size:34px; line-height:1; }
+    .feat h4 { font-size:14px; font-weight:800; margin-top:9px; line-height:1.2; }
+    .feat p { font-size:11.5px; color:#64748b; margin-top:4px; line-height:1.35; }
+    .feat-a { background:#fff7ed; }
+    .feat-b { background:#eff6ff; }
+    .feat.wide { grid-column:1 / -1; display:flex; align-items:center; gap:14px; text-align:left; padding:15px 18px; background:#eff6ff; }
+    .feat.wide .ic { font-size:40px; }
+    .feat.wide h4 { margin-top:0; }
 
-    /* Video card */
-    .video-wrap { position:relative; height:min(56vh,500px); aspect-ratio:9/16; margin:18px auto 0; border-radius:20px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.45); background:#000; }
-    .video-wrap video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; }
-    .hint { font-size:12.5px; color:#94a3b8; margin-top:12px; }
+    /* Card 2: marco de celular con el video */
+    .phone { position:relative; width:min(64vw,250px); aspect-ratio:9/19; margin:20px auto 0; background:#000; border:7px solid #1e293b; border-radius:36px; box-shadow:0 20px 46px rgba(0,0,0,.55), inset 0 0 0 1px #334155; overflow:hidden; }
+    .phone::before { content:""; position:absolute; top:9px; left:50%; transform:translateX(-50%); width:62px; height:5px; background:#334155; border-radius:99px; z-index:3; }
+    .phone video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; background:#000; }
+    .hint { font-size:12.5px; color:#94a3b8; margin-top:14px; }
+    .hint .eq { color:var(--orange); }
 
-    /* Final card */
-    .btn-cta { display:inline-block; margin-top:26px; background:linear-gradient(135deg,var(--orange),#ea580c); color:#fff; font-weight:800; font-size:16px; text-decoration:none; padding:16px 30px; border-radius:14px; box-shadow:0 10px 26px rgba(249,115,22,.4); }
+    /* Card 3: CTA con brillo + escena */
+    .btn-cta { display:inline-block; margin-top:24px; background:linear-gradient(135deg,var(--orange),#ea580c); color:#fff; font-weight:800; font-size:16px; text-decoration:none; padding:17px 32px; border-radius:15px; animation:glow 2.4s ease-in-out infinite; }
     .btn-cta:active { transform:translateY(1px); }
+    @keyframes glow {
+        0%,100% { box-shadow:0 10px 26px rgba(249,115,22,.40); }
+        50%     { box-shadow:0 12px 44px rgba(249,115,22,.80); }
+    }
+    .scene { margin:28px auto 4px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:46px;
+             background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08);
+             border-radius:20px; padding:16px 18px; max-width:300px; }
 
     /* Bottom bar */
-    .bottombar { display:flex; align-items:center; gap:14px; padding:14px 22px calc(18px + env(safe-area-inset-bottom)); }
+    .bottombar { display:flex; align-items:center; gap:14px; padding:14px 22px calc(18px + env(safe-area-inset-bottom)); position:relative; z-index:5; }
     .dots { display:flex; gap:8px; }
     .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); transition:all .25s; cursor:pointer; }
     .dot.active { background:var(--orange); width:24px; border-radius:5px; }
-    .btn-next { margin-left:auto; background:#fff; color:var(--navy); font-weight:800; font-size:15px; border:0; border-radius:13px; padding:13px 26px; cursor:pointer; }
+    .btn-next { margin-left:auto; background:linear-gradient(135deg,var(--orange),#ea580c); color:#fff; font-weight:800; font-size:15px; border:0; border-radius:13px; padding:13px 26px; cursor:pointer; box-shadow:0 8px 20px rgba(249,115,22,.35); }
     .btn-next:active { transform:translateY(1px); }
 </style>
 </head>
@@ -93,37 +138,58 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
 
                 <!-- CARD 1 -->
                 <section class="card">
+                    <div class="bg bg-map">
+                        <div class="city">Santo Domingo</div>
+                        <div class="route"></div>
+                    </div>
                     <div class="card-inner">
                         <div class="kicker">Para Empresas</div>
                         <h1>¿Qué es <span class="o">Mandaito RD</span>?</h1>
                         <p class="lead">Conectamos a tu empresa con una red de mensajeros verificados y geolocalizados para entregar tus paquetes. Sin comprar motores ni contratar repartidores — pagas solo por envío.</p>
-                        <ul class="mini">
-                            <li>🛵 Sin flota propia</li>
-                            <li>🛡️ Tus paquetes respaldados</li>
-                            <li>✅ Pagas al confirmar la entrega</li>
-                        </ul>
+                        <div class="feat-grid">
+                            <div class="feat feat-a">
+                                <div class="ic">🛵</div>
+                                <h4>Olvídate de comprar motos</h4>
+                                <p>Sin costos fijos de flota.</p>
+                            </div>
+                            <div class="feat feat-b">
+                                <div class="ic">🛡️</div>
+                                <h4>Tus paquetes asegurados</h4>
+                                <p>Cobertura contra imprevistos.</p>
+                            </div>
+                            <div class="feat wide">
+                                <div class="ic">✅</div>
+                                <div class="tx">
+                                    <h4>Solo pagas lo entregado</h4>
+                                    <p>Confirmación instantánea al recibir.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <!-- CARD 2 -->
                 <section class="card">
+                    <div class="bg bg-net"></div>
                     <div class="card-inner">
                         <div class="kicker">Mira cómo funciona</div>
                         <h2>Conócelo en 1 minuto</h2>
-                        <div class="video-wrap">
+                        <div class="phone">
                             <video src="video.mp4" controls playsinline preload="metadata" aria-label="Cómo funciona Mandaito"></video>
                         </div>
-                        <p class="hint">▶ Toca para reproducir con sonido</p>
+                        <p class="hint">▶ Toca para reproducir con sonido <span class="eq">🔊</span></p>
                     </div>
                 </section>
 
                 <!-- CARD 3 -->
                 <section class="card">
+                    <div class="bg bg-net"></div>
                     <div class="card-inner">
                         <div class="kicker">Empieza hoy</div>
                         <h2>Registra tu empresa y envía hoy</h2>
                         <p class="lead">Crea tu cuenta, carga tu saldo y publica tu primer envío. Sin mensualidad — pagas solo por envío.</p>
                         <a href="https://mandaitord.tech/registro/empresa" class="btn-cta js-register">Registrar mi empresa →</a>
+                        <div class="scene">🏢 🚚 📦</div>
                     </div>
                 </section>
 
@@ -160,7 +226,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         dots.forEach(function(d, k){ d.addEventListener('click', function(){ go(k); }); });
 
         // No navegar cuando se toca un elemento interactivo (video, enlaces, botones).
-        function isInteractive(t){ return t.closest('a, button, video, .video-wrap'); }
+        function isInteractive(t){ return t.closest('a, button, video, .phone'); }
 
         // Toque por zonas: lado izquierdo = atrás, lado derecho = adelante.
         function tapNav(clientX, target){
@@ -172,7 +238,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         // Swipe + tap táctil (a los lados). Un movimiento grande = swipe; un toque = zona.
         var x0 = null, touched = false;
         carousel.addEventListener('touchstart', function(e){
-            if (e.target.closest('.video-wrap')) { x0 = null; return; }
+            if (e.target.closest('.phone')) { x0 = null; return; }
             x0 = e.touches[0].clientX; touched = true;
         }, { passive:true });
         carousel.addEventListener('touchend', function(e){

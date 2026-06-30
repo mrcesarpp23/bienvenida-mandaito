@@ -5,10 +5,12 @@ Landing estática para anuncios de Facebook. El usuario llega desde el anuncio, 
 - **Sitio:** `https://bienvenida.mandaitord.tech`
 - **Separada de la plataforma** (no toca el Laravel). Solo HTML estático.
 
-## Antes de publicar — reemplazar 2 valores en `index.html`
-1. **Video:** cambiar `VIDEO_ID` por el ID de tu video de YouTube.
-   - Ej: si tu link es `https://youtu.be/AbC123xyz`, el ID es `AbC123xyz`.
-2. **Píxel de Facebook:** cambiar `[PIXEL_ID]` (aparece 3 veces) por tu ID real del Píxel de Meta.
+## Archivos
+- `index.html` — la página.
+- `video.mp4` — video vertical (reel 9:16, 720×1280) autoreproducido. **Debe copiarse junto al index.html.**
+
+## Antes de publicar — reemplazar el Píxel en `index.html`
+- **Píxel de Facebook:** cambiar `[PIXEL_ID]` (aparece 3 veces) por tu ID real del Píxel de Meta.
 
 ## Deploy en el VPS (una sola vez)
 

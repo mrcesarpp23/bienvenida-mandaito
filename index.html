@@ -65,7 +65,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
 
     /* Video — formato vertical tipo Reel/Short (9:16) */
     .video-wrap { position:relative; width:100%; max-width:320px; margin:0 auto; height:0; padding-bottom:min(177.78%, 568px); border-radius:20px; overflow:hidden; box-shadow:0 14px 38px rgba(15,23,42,.22); background:#0f172a; }
-    .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .video-wrap iframe, .video-wrap video { position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:cover; }
 
     /* Benefits */
     .benefits { display:grid; grid-template-columns:1fr; gap:11px; }
@@ -126,10 +126,8 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
             <div class="eyebrow">Mira cómo funciona</div>
             <h2 class="sec">Conoce Mandaito en 1 minuto</h2>
             <div class="video-wrap">
-                <iframe src="https://www.youtube-nocookie.com/embed/6ERSKlQXJZo?rel=0"
-                        title="Cómo funciona Mandaito"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                <video src="video.mp4" autoplay muted loop playsinline controls preload="metadata"
+                       aria-label="Cómo funciona Mandaito"></video>
             </div>
         </div>
     </section>

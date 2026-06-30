@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mandaito RD — Envía tus paquetes sin flota propia</title>
+<meta name="description" content="Mandaito conecta a tu empresa con una red de mensajeros verificados para entregar tus paquetes. Tus envíos respaldados, pagas por entrega, sin comprar motores.">
+
+<!-- Open Graph (para cuando se comparte el enlace) -->
+<meta property="og:title" content="Mandaito RD — Tus envíos resueltos, sin flota propia">
+<meta property="og:description" content="Una red de mensajeros verificados lista para entregar tus paquetes. Regístrate y envía hoy.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bienvenida.mandaitord.tech">
+
+<!-- ============ META PIXEL (Facebook) ============ -->
+<!-- TODO: reemplazar [PIXEL_ID] por tu ID real del Píxel de Meta -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '[PIXEL_ID]');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscript>
+<!-- ============ /META PIXEL ============ -->
+
+<style>
+    :root { --navy:#0f172a; --orange:#f97316; --green:#15803d; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1e293b; background:#fff; line-height:1.55; -webkit-font-smoothing:antialiased; }
+    img { max-width:100%; display:block; }
+    .wrap { max-width:720px; margin:0 auto; padding:0 18px; }
+
+    /* Header */
+    header { background:var(--navy); color:#fff; }
+    .hd { display:flex; align-items:center; gap:9px; padding:13px 18px; max-width:720px; margin:0 auto; }
+    .logo { width:32px; height:32px; background:var(--orange); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:800; color:#fff; }
+    .brandname { font-size:16px; font-weight:800; letter-spacing:.3px; }
+    .brandname .rd { color:var(--orange); }
+    .badge { margin-left:auto; font-size:10px; font-weight:700; color:#94a3b8; border:1px solid #334155; border-radius:99px; padding:3px 9px; }
+
+    /* Hero */
+    .hero { background:linear-gradient(135deg,#0f172a 0%,#1e293b 55%,#0f3460 100%); color:#fff; padding:34px 0 38px; position:relative; overflow:hidden; }
+    .hero::after { content:""; position:absolute; right:-50px; top:-50px; width:220px; height:220px; background:var(--orange); opacity:.14; border-radius:50%; }
+    .hero h1 { font-size:27px; font-weight:800; line-height:1.18; position:relative; }
+    .hero h1 .hl { color:#fb923c; }
+    .hero p { font-size:14px; color:#cbd5e1; margin-top:12px; max-width:560px; position:relative; }
+    .hero .cta-row { margin-top:22px; position:relative; }
+
+    .btn { display:inline-block; text-decoration:none; font-weight:800; text-align:center; border-radius:13px; padding:15px 26px; font-size:15px; transition:transform .12s, box-shadow .12s; }
+    .btn-primary { background:linear-gradient(135deg,var(--orange),#ea580c); color:#fff; box-shadow:0 8px 22px rgba(249,115,22,.35); }
+    .btn-primary:active { transform:translateY(1px); }
+    .btn-block { display:block; width:100%; }
+
+    section.pad { padding:30px 0; }
+    .eyebrow { font-size:11px; font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:1px; text-align:center; margin-bottom:6px; }
+    h2.sec { font-size:21px; font-weight:800; color:var(--navy); text-align:center; line-height:1.25; margin-bottom:16px; }
+
+    /* Video */
+    .video-wrap { position:relative; padding-bottom:56.25%; height:0; border-radius:16px; overflow:hidden; box-shadow:0 12px 34px rgba(15,23,42,.18); background:#0f172a; }
+    .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+    /* Benefits */
+    .benefits { display:grid; grid-template-columns:1fr; gap:11px; }
+    .bf { display:flex; gap:12px; align-items:flex-start; background:#f8fafc; border:1px solid #e2e8f0; border-radius:13px; padding:14px 16px; }
+    .bf .ic { font-size:23px; line-height:1; flex-shrink:0; }
+    .bf h3 { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:2px; }
+    .bf p { font-size:12.5px; color:#475569; }
+
+    /* Steps */
+    .steps { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .step { background:#fff; border:1px solid #e2e8f0; border-radius:13px; padding:14px; text-align:center; }
+    .step .n { width:30px; height:30px; margin:0 auto 7px; background:var(--navy); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
+    .step p { font-size:12px; color:#334155; }
+    .step p b { color:var(--navy); }
+
+    /* Final CTA */
+    .final { background:linear-gradient(135deg,var(--green),#16a34a); color:#fff; border-radius:18px; padding:26px 22px; text-align:center; }
+    .final h2 { font-size:21px; font-weight:800; margin-bottom:6px; }
+    .final p { font-size:13px; color:#dcfce7; margin-bottom:18px; }
+    .final .btn-primary { background:#fff; color:var(--green); box-shadow:0 8px 22px rgba(0,0,0,.18); }
+
+    .reassure { text-align:center; font-size:11.5px; color:#64748b; margin-top:14px; }
+
+    footer { background:#0f172a; color:#94a3b8; font-size:12px; text-align:center; padding:22px 18px; margin-top:8px; }
+    footer a { color:#cbd5e1; text-decoration:none; }
+    footer .links { margin-top:8px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    @media (min-width:640px){
+        .hero h1 { font-size:32px; }
+        .benefits { grid-template-columns:1fr 1fr; }
+    }
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="hd">
+            <div class="logo">M</div>
+            <div class="brandname">Mandaito<span class="rd">RD</span></div>
+            <div class="badge">PARA EMPRESAS</div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="wrap">
+            <h1>Tus envíos resueltos. <span class="hl">Sin comprar un solo motor.</span></h1>
+            <p>Mandaito conecta a tu empresa con una red de mensajeros verificados y geolocalizados para entregar tus paquetes. Pagas por envío, tus paquetes están respaldados, y empiezas hoy.</p>
+            <div class="cta-row">
+                <a href="https://mandaitord.tech/registro/empresa" class="btn btn-primary js-register">Registrar mi empresa →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="pad">
+        <div class="wrap">
+            <div class="eyebrow">Mira cómo funciona</div>
+            <h2 class="sec">Conoce Mandaito en 1 minuto</h2>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube-nocookie.com/embed/6ERSKlQXJZo?rel=0"
+                        title="Cómo funciona Mandaito"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="pad" style="background:#f8fafc;">
+        <div class="wrap">
+            <div class="eyebrow">Por qué te conviene</div>
+            <h2 class="sec">Entrega más, sin la logística encima</h2>
+            <div class="benefits">
+                <div class="bf"><div class="ic">🛵</div><div><h3>Sin flota propia</h3><p>Olvídate de comprar motores y contratar repartidores. Pagas solo por envío.</p></div></div>
+                <div class="bf"><div class="ic">🛡️</div><div><h3>Paquetes respaldados</h3><p>Cada mensajero respalda tu envío con un fondo de garantía. Si algo pasa, está cubierto.</p></div></div>
+                <div class="bf"><div class="ic">✅</div><div><h3>No pagas hasta confirmar</h3><p>El pago se libera solo cuando el cliente da su código y tú confirmas la entrega.</p></div></div>
+                <div class="bf"><div class="ic">📍</div><div><h3>Rastreo y transparencia</h3><p>Sigues tu envío, calificas al mensajero y tienes soporte ante cualquier disputa.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="pad">
+        <div class="wrap">
+            <div class="eyebrow">Así de fácil</div>
+            <h2 class="sec">Cómo funciona en 4 pasos</h2>
+            <div class="steps">
+                <div class="step"><div class="n">1</div><p><b>Publica</b> tu envío: origen, destino y flete.</p></div>
+                <div class="step"><div class="n">2</div><p>Un <b>mensajero</b> de tu zona lo toma.</p></div>
+                <div class="step"><div class="n">3</div><p><b>Entrega</b> con GPS y código del cliente.</p></div>
+                <div class="step"><div class="n">4</div><p><b>Confirmas</b> y se libera el pago.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="pad">
+        <div class="wrap">
+            <div class="final">
+                <h2>Empieza a enviar hoy</h2>
+                <p>Crea tu cuenta de Empresa, carga tu saldo y publica tu primer envío.</p>
+                <a href="https://mandaitord.tech/registro/empresa" class="btn btn-primary btn-block js-register">Registrar mi empresa →</a>
+            </div>
+            <p class="reassure">Sin mensualidad · Pagas solo por envío · Soporte en Santo Domingo</p>
+        </div>
+    </section>
+
+    <footer>
+        Mandaito RD — Última Milla con Garantía de Depósito
+        <div class="links">
+            <a href="https://mandaitord.tech">Sitio principal</a>
+            <a href="https://mandaitord.tech/terminos">Términos</a>
+            <a href="https://mandaitord.tech/privacidad">Privacidad</a>
+        </div>
+    </footer>
+
+    <script>
+        // Dispara el evento de conversión "Lead" en Meta al hacer clic en registrar
+        document.querySelectorAll('.js-register').forEach(function(el){
+            el.addEventListener('click', function(){
+                if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -98,7 +98,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
     .feat.wide h4 { margin-top:0; }
 
     /* Card 2: marco de celular con el video */
-    .phone { position:relative; width:min(64vw,250px); aspect-ratio:9/19; margin:20px auto 0; background:#000; border:7px solid #1e293b; border-radius:36px; box-shadow:0 20px 46px rgba(0,0,0,.55), inset 0 0 0 1px #334155; overflow:hidden; }
+    .phone { position:relative; width:min(82vw,330px); aspect-ratio:9/18; margin:16px auto 0; background:#000; border:8px solid #1e293b; border-radius:40px; box-shadow:0 20px 46px rgba(0,0,0,.55), inset 0 0 0 1px #334155; overflow:hidden; }
     .phone::before { content:""; position:absolute; top:9px; left:50%; transform:translateX(-50%); width:62px; height:5px; background:#334155; border-radius:99px; z-index:3; }
     .phone video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; background:#000; }
     .hint { font-size:12.5px; color:#94a3b8; margin-top:14px; }
@@ -111,9 +111,10 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         0%,100% { box-shadow:0 10px 26px rgba(249,115,22,.40); }
         50%     { box-shadow:0 12px 44px rgba(249,115,22,.80); }
     }
-    .scene { margin:28px auto 4px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:46px;
+    .scene { margin:26px auto 4px; display:flex; align-items:center; justify-content:center;
              background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08);
-             border-radius:20px; padding:16px 18px; max-width:300px; }
+             border-radius:20px; padding:12px 16px; max-width:300px; }
+    .scene svg { max-width:100%; height:auto; }
 
     /* Bottom bar */
     .bottombar { display:flex; align-items:center; gap:14px; padding:14px 22px calc(18px + env(safe-area-inset-bottom)); position:relative; z-index:5; }
@@ -148,17 +149,39 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
                         <p class="lead">Conectamos a tu empresa con una red de mensajeros verificados y geolocalizados para entregar tus paquetes. Sin comprar motores ni contratar repartidores — pagas solo por envío.</p>
                         <div class="feat-grid">
                             <div class="feat feat-a">
-                                <div class="ic">🛵</div>
+                                <div class="ic">
+                                    <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true" fill="none">
+                                        <circle cx="13" cy="35" r="6.5" stroke="#0f172a" stroke-width="3"/>
+                                        <circle cx="37" cy="35" r="6.5" stroke="#0f172a" stroke-width="3"/>
+                                        <path d="M13 35h11l5.5-12" stroke="#0f172a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M30.5 23H38l3.5 7" stroke="#0f172a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <rect x="21" y="8" width="14" height="13" rx="2" fill="#f97316"/>
+                                        <path d="M28 8v13M21 14.5h14" stroke="#fff" stroke-width="2"/>
+                                    </svg>
+                                </div>
                                 <h4>Olvídate de comprar motos</h4>
                                 <p>Sin costos fijos de flota.</p>
                             </div>
                             <div class="feat feat-b">
-                                <div class="ic">🛡️</div>
+                                <div class="ic">
+                                    <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none">
+                                        <path d="M24 5l15 5v11c0 10-7 16.5-15 21-8-4.5-15-11-15-21V10z" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+                                        <path d="M16 24l5.5 5.5L33 18" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
                                 <h4>Tus paquetes asegurados</h4>
                                 <p>Cobertura contra imprevistos.</p>
                             </div>
                             <div class="feat wide">
-                                <div class="ic">✅</div>
+                                <div class="ic">
+                                    <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true" fill="none">
+                                        <rect x="12" y="5" width="24" height="38" rx="4" fill="#0f172a"/>
+                                        <rect x="15" y="9" width="18" height="26" rx="1.5" fill="#fff"/>
+                                        <circle cx="24" cy="39" r="1.6" fill="#94a3b8"/>
+                                        <circle cx="24" cy="20" r="7.5" fill="#16a34a"/>
+                                        <path d="M20.5 20l2.3 2.3 4.7-5" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
                                 <div class="tx">
                                     <h4>Solo pagas lo entregado</h4>
                                     <p>Confirmación instantánea al recibir.</p>
@@ -189,7 +212,30 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
                         <h2>Registra tu empresa y envía hoy</h2>
                         <p class="lead">Crea tu cuenta, carga tu saldo y publica tu primer envío. Sin mensualidad — pagas solo por envío.</p>
                         <a href="https://mandaitord.tech/registro/empresa" class="btn-cta js-register">Registrar mi empresa →</a>
-                        <div class="scene">🏢 🚚 📦</div>
+                        <div class="scene">
+                            <svg viewBox="0 0 170 96" width="250" height="141" aria-hidden="true" fill="none">
+                                <ellipse cx="85" cy="86" rx="74" ry="7" fill="rgba(255,255,255,.05)"/>
+                                <!-- edificio -->
+                                <rect x="22" y="20" width="48" height="60" rx="3" fill="#16335a" stroke="#2c4f7c" stroke-width="2"/>
+                                <g fill="#f97316" opacity=".55">
+                                    <rect x="29" y="28" width="8" height="8" rx="1"/>
+                                    <rect x="42" y="28" width="8" height="8" rx="1"/>
+                                    <rect x="55" y="28" width="8" height="8" rx="1"/>
+                                    <rect x="29" y="42" width="8" height="8" rx="1"/>
+                                    <rect x="42" y="42" width="8" height="8" rx="1"/>
+                                    <rect x="55" y="42" width="8" height="8" rx="1"/>
+                                </g>
+                                <rect x="38" y="62" width="16" height="18" rx="1.5" fill="#0f172a"/>
+                                <!-- camión -->
+                                <rect x="84" y="46" width="40" height="26" rx="2.5" fill="#f1f5f9"/>
+                                <rect x="90" y="52" width="14" height="14" rx="1.5" fill="#f97316"/>
+                                <path d="M90 59h14M97 52v14" stroke="#fff" stroke-width="2"/>
+                                <path d="M124 53h12l9 10v9h-21z" fill="#f97316"/>
+                                <rect x="128" y="56" width="10" height="8" rx="1" fill="#bae6fd"/>
+                                <circle cx="98" cy="74" r="6.5" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                                <circle cx="135" cy="74" r="6.5" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                            </svg>
+                        </div>
                     </div>
                 </section>
 

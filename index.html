@@ -79,18 +79,18 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         background:radial-gradient(40% 30% at 75% 18%, rgba(249,115,22,.16), transparent 70%),
                    radial-gradient(45% 35% at 20% 80%, rgba(22,163,74,.14), transparent 70%); }
 
-    .kicker { font-size:11px; font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:1.6px; margin-bottom:11px; }
-    h1 { font-size:27px; font-weight:800; line-height:1.18; }
+    .kicker { font-size:clamp(10px,2.8vw,11px); font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:1.6px; margin-bottom:11px; }
+    h1 { font-size:clamp(23px,6.6vw,29px); font-weight:800; line-height:1.18; }
     h1 .o { color:var(--orange); }
-    h2 { font-size:25px; font-weight:800; line-height:1.18; }
-    .lead { font-size:14.5px; color:#cbd5e1; margin-top:13px; line-height:1.55; }
+    h2 { font-size:clamp(21px,6vw,26px); font-weight:800; line-height:1.18; }
+    .lead { font-size:clamp(13px,3.8vw,15px); color:#cbd5e1; margin-top:13px; line-height:1.55; }
 
     /* Card 1: grid de beneficios */
     .feat-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:20px; }
     .feat { border-radius:16px; padding:16px 13px 15px; color:#0f172a; box-shadow:0 10px 26px rgba(0,0,0,.30); }
     .feat .ic { font-size:34px; line-height:1; }
-    .feat h4 { font-size:14px; font-weight:800; margin-top:9px; line-height:1.2; }
-    .feat p { font-size:11.5px; color:#64748b; margin-top:4px; line-height:1.35; }
+    .feat h4 { font-size:clamp(12.5px,3.6vw,14px); font-weight:800; margin-top:9px; line-height:1.2; }
+    .feat p { font-size:clamp(10.5px,3vw,11.5px); color:#64748b; margin-top:4px; line-height:1.35; }
     .feat-a { background:#fff7ed; }
     .feat-b { background:#eff6ff; }
     .feat.wide { grid-column:1 / -1; display:flex; align-items:center; gap:14px; text-align:left; padding:15px 18px; background:#eff6ff; }

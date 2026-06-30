@@ -103,6 +103,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
     .phone video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; background:#000; }
     .hint { font-size:12.5px; color:#94a3b8; margin-top:14px; }
     .hint .eq { color:var(--orange); }
+    .vlink { display:inline-block; margin-top:10px; font-size:13px; font-weight:700; color:var(--orange); text-decoration:none; border-bottom:1px solid rgba(249,115,22,.4); }
 
     /* Card 3: CTA con brillo + escena */
     .btn-cta { display:inline-block; margin-top:24px; background:linear-gradient(135deg,var(--orange),#ea580c); color:#fff; font-weight:800; font-size:16px; text-decoration:none; padding:17px 32px; border-radius:15px; animation:glow 2.4s ease-in-out infinite; }
@@ -115,6 +116,8 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
              background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08);
              border-radius:20px; padding:12px 16px; max-width:300px; }
     .scene svg { max-width:100%; height:auto; }
+    .trust { display:flex; flex-wrap:wrap; justify-content:center; gap:7px 16px; margin-top:18px; font-size:12.5px; color:#cbd5e1; font-weight:600; }
+    .trust b { color:#22c55e; margin-right:3px; }
 
     /* Bottom bar */
     .bottombar { display:flex; align-items:center; gap:14px; padding:14px 22px calc(18px + env(safe-area-inset-bottom)); position:relative; z-index:5; }
@@ -201,6 +204,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
                             <video src="video.mp4" controls playsinline preload="metadata" aria-label="Cómo funciona Mandaito"></video>
                         </div>
                         <p class="hint">▶ Toca para reproducir con sonido <span class="eq">🔊</span></p>
+                        <a class="vlink js-register" href="https://mandaitord.tech/registro/empresa">o regístrate ahora →</a>
                     </div>
                 </section>
 
@@ -212,6 +216,11 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
                         <h2>Registra tu empresa y envía hoy</h2>
                         <p class="lead">Crea tu cuenta, carga tu saldo y publica tu primer envío. Sin mensualidad — pagas solo por envío.</p>
                         <a href="https://mandaitord.tech/registro/empresa" class="btn-cta js-register">Registrar mi empresa →</a>
+                        <div class="trust">
+                            <span><b>✓</b>Gratis registrarte</span>
+                            <span><b>✓</b>Sin mensualidad</span>
+                            <span><b>✓</b>Listo en minutos</span>
+                        </div>
                         <div class="scene">
                             <svg viewBox="0 0 170 96" width="250" height="141" aria-hidden="true" fill="none">
                                 <ellipse cx="85" cy="86" rx="74" ry="7" fill="rgba(255,255,255,.05)"/>
@@ -260,6 +269,12 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         var video   = document.querySelector('video');
         var N = 3, i = 0;
 
+        // Auto-avance de la card 1 a la card 2 (el video). Cambia AUTO_MS:
+        //   8000 = 8 segundos (recomendado para anuncios) · 60000 = 1 minuto · 120000 = 2 minutos
+        var AUTO_MS = 8000;
+        var autoTimer = setTimeout(function(){ if (i === 0) go(1); }, AUTO_MS);
+        function cancelAuto(){ if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; } }
+
         function go(n){
             i = Math.max(0, Math.min(N - 1, n));
             track.style.transform = 'translateX(' + (-i * 100) + '%)';
@@ -268,8 +283,11 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
             if (video && i !== 1) { try { video.pause(); } catch(e){} }
         }
 
-        nextBtn.addEventListener('click', function(){ go(i + 1); });
-        dots.forEach(function(d, k){ d.addEventListener('click', function(){ go(k); }); });
+        // Cuando el video termina, pasa solo a la card de registro.
+        if (video) { video.addEventListener('ended', function(){ go(2); }); }
+
+        nextBtn.addEventListener('click', function(){ cancelAuto(); go(i + 1); });
+        dots.forEach(function(d, k){ d.addEventListener('click', function(){ cancelAuto(); go(k); }); });
 
         // No navegar cuando se toca un elemento interactivo (video, enlaces, botones).
         function isInteractive(t){ return t.closest('a, button, video, .phone'); }
@@ -284,6 +302,7 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         // Swipe + tap táctil (a los lados). Un movimiento grande = swipe; un toque = zona.
         var x0 = null, touched = false;
         carousel.addEventListener('touchstart', function(e){
+            cancelAuto();
             if (e.target.closest('.phone')) { x0 = null; return; }
             x0 = e.touches[0].clientX; touched = true;
         }, { passive:true });
@@ -300,13 +319,14 @@ src="https://www.facebook.com/tr?id=[PIXEL_ID]&ev=PageView&noscript=1"/></noscri
         // Clic por zonas en desktop (el guard evita que se dispare doble en móvil).
         carousel.addEventListener('click', function(e){
             if (touched) return;
+            cancelAuto();
             tapNav(e.clientX, e.target);
         });
 
         // Teclado (flechas) — útil en desktop
         document.addEventListener('keydown', function(e){
-            if (e.key === 'ArrowRight') go(i + 1);
-            if (e.key === 'ArrowLeft')  go(i - 1);
+            if (e.key === 'ArrowRight') { cancelAuto(); go(i + 1); }
+            if (e.key === 'ArrowLeft')  { cancelAuto(); go(i - 1); }
         });
 
         // Conversión: evento Lead de Meta al ir a registrar
